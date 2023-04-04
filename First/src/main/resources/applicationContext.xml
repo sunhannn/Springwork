@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 	<bean id="Tv" class="com.springbook.biz.Lg"></bean> -->
+	<bean id="ltv" class="com.springbook.biz.Lg" scope="prototype"></bean>
+	<bean id="stv" class="com.springbook.biz.Samsung" init-method="initSamsung" destroy-method="destroySamsung"></bean>
+	<!-- <jsp:useBean id="Tv" class="com.springbook.biz.Lg"></jsp:useBean> -->
+	<!-- Lg tv = new Lg(); -->
+</beans>

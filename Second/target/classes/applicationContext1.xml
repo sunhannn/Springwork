@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="tv" class="com.springbook.setter.SamsungTv">
+		<property name="speaker" ref="appleSpeaker"></property>
+		<property name="price" value="500000"></property>
+	</bean>
+	<bean id="appleSpeaker" class="com.springbook.setter.AppleSpeaker"></bean>
+	<bean id="sonySpeaker" class="com.springbook.setter.SonySpeaker"></bean>
+
+
+
+
+
+</beans>
