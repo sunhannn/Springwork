@@ -16,26 +16,25 @@ public class GetBoardListController implements Controller {
 	@Autowired
 	BoardDAOBCP boardDAO;
 
-	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("글 목록 입력 처리");
-//		request.setCharacterEncoding("utf-8");
+		System.out.println("글 목록 검색 처리");
+
+//      request.setCharacterEncoding("utf-8");
 
 		// 1. 사용자 입력 정보 추출(검색 기능은 나중에 구현)
-		// 2 .DB 연동 처리
-
+		// 2. DB 연동 처리
 		BoardVO vo = new BoardVO();
-		String keyword, condition = null;
-		if (request.getParameter("searchKeyword") == null)
+		String keyword, condition;
+		if (request.getParameter("searchKeyword") == null) {
 			keyword = "";
-		else
+		} else {
 			keyword = request.getParameter("searchKeyword");
-
-		if (request.getParameter("searchCondition") == null)
-			keyword = "";
-		else
-			keyword = request.getParameter("searchCondition");
-
+		}
+		if (request.getParameter("searchCondition") == null) {
+			condition = "TITLE";
+		} else {
+			condition = request.getParameter("searchCondition");
+		}
 		if (condition.equals("TITLE")) {
 			vo.setTitle(keyword);
 			vo.setContent("");
@@ -43,19 +42,19 @@ public class GetBoardListController implements Controller {
 			vo.setTitle("");
 			vo.setContent(keyword);
 		}
-		System.out.println("condition : "+ condition);
-		System.out.println("keyword : "+ keyword);
-		System.out.println("vo.getContent : "+vo.getContent());
-		System.out.println("vo.getTitle : "+vo.getTitle());
-		
+		System.out.println("condition: " + condition);
+		System.out.println("keyword: " + keyword);
+		System.out.println("vo.getContent(): " + vo.getContent());
+		System.out.println("vo.getTitle(): " + vo.getTitle());
+
 		List<BoardVO> boardList = boardDAO.getBoardList(vo, keyword, condition);
-		
-		//3. 검색 결과를 세션에 저장하고 목록 화면을 리턴한다.
+
+		// 3. 검색 결과를 세션에 저장하고 목록화면을 리턴한다.
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("boardList",boardList);
+		// request.setAttribute와 같은 기능을 한다.
+		mav.addObject("boardList", boardList);
+		// forward 객체의 setPath와 같다. 포워딩방식이 기본값이며, redirect:패턴으로 기술할 경우 리다이렉트로 처리된다.
 		mav.setViewName("board/getBoardList");
 		return mav;
-
 	}
-
 }

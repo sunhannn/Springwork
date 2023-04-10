@@ -18,7 +18,7 @@ public class UserDAOBCP {
 		Object[] args = { vo.getId(), vo.getPassword() };
 		try {
 
-			return (UserVO) jdbcTemplate.query(USER_GET, new UserRowMapper(), args);
+			return jdbcTemplate.queryForObject(USER_GET, new UserRowMapper(), args);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
