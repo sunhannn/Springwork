@@ -1,9 +1,0 @@
-package com.springbook.biz;
-
-public class Samsung implements Tv {
-	public void initSamsung() {
-		System.out.println("삼성 tv 초기 메소드 실행");
-
-	}
-
-}
