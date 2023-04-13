@@ -51,6 +51,9 @@ String userId = session.getAttribute("userId") != null ? session.getAttribute("u
 				<li class="nav-item"><a class="nav-link" href="logout.do">로그아웃</a>
 		
 				</li>
+				<li class="nav-item"><a class="nav-link" href="myPage.jsp">마이페이지</a>
+		
+				</li>
 			</c:when>
 			<c:otherwise>
 				<li class="nav-item"><a class="nav-link" href="login.jsp">로그인</a>
