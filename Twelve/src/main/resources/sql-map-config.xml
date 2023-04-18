@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- Alias(객체명) 설정 -->
+	<typeAliases>
+		<typeAlias type="com.springbook.biz.board.BoardVO" alias="board"></typeAlias>
+<!-- 		<typeAlias type="com.springbook.biz.user.UserVO" alias="user"></typeAlias> -->
+	</typeAliases>
+	
+	<!-- Sql Mapper설정 -->
+	<mappers>
+		<mapper resource="mappings/board-mapper.xml" />
+	</mappers>
+</configuration>

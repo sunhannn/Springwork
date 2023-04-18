@@ -36,6 +36,7 @@
 </aspect-definition>
 </aop-project>
 <aop-project name="Ten"/>
+<aop-project name="Twelve"/>
 <aop-project name="Eight"/>
 <aop-project name="Eleven2"/>
 <aop-project name="Five1"/>

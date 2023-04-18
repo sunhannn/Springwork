@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:component-scan
+		base-package="com.springbook.view" />
+	<!-- @ResponseBody, @ControllerAdvice, @ExceptionHandler 객체생성관련 -->
+	<!-- context:comoponent-scan 태그로 처리하지 못하는 어노테이션을 객체생성할 때 사용하는 태그 -->
+	<mvc:annotation-driven />
+
+	<!-- 파일 업로드 객체 생성 5MB정도 1024KB = 1MB -> 1024MB -> 1GB -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="5242880"></property>
+	</bean>
+	<!-- 인터셉터 객체 생성 -->
+	<bean id="authenticationInterceptor"
+		class="org.spring.www.interceptor.Auternticationinterceptor"></bean>
+	<!-- Interceptor 설정 -->
+	<!-- <mvc:interceptors> -->
+	<!-- <mvc:interceptor> -->
+	<!-- <mvc:mapping path="/insertBoard.do" /> -->
+	<!-- <mvc:mapping path="/getBoard.do" /> -->
+	<!-- <ref bean="authenticationInterceptor" /> -->
+	<!-- </mvc:interceptor> -->
+	<!-- </mvc:interceptors> -->
+
+
+	<!-- Interceptor 설정 -->
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<mvc:exclude-mapping path="/login.do" />
+			<mvc:exclude-mapping path="/logout.do" />
+			<mvc:exclude-mapping path="/getBoardList.do" />
+			<mvc:exclude-mapping path="/getBoard.do" />
+			<ref bean="authenticationInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+
+	<!-- 예외 처리 관련 -->
+	<!-- <bean id="exceptionResolver" -->
+	<!-- class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> -->
+	<!-- <property name="exceptionMappings"> -->
+	<!-- <props> -->
+	<!-- <prop key="java lang.ArithmeticException">/error/errorArithmetic.jsp</prop> -->
+	<!-- <prop key="java lang.NullPointerException">/error/NullPointer.jsp</prop> -->
+	<!-- <prop key="java lang.IllegalArgumentrException">/error/errorException.jsp</prop> -->
+	<!-- </props> -->
+	<!-- </property> -->
+	<!-- <property name="defaultErrorView" -->
+	<!-- value="/error/errorException.jsp" /> -->
+	<!-- </bean> -->
+
+
+</beans>
